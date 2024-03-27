@@ -1,18 +1,19 @@
 ﻿namespace CommandPattern
 {
+    // Builder pattern
+
     public class Program
     {
         static void Main(string[] args)
         {
-            HouseDirector houseDirector = new();
-            IHouseBuilder luxuryBuilder = new LuxutyHouseBuilder();
-            List<string> lstAmenities = ["Swimming Pool", "Home Thetre", "Garden"];
-            
-            // Construct luxury house
-            houseDirector.Construct(luxuryBuilder, 3, true, lstAmenities);
-            House house = luxuryBuilder.GetHouse();
-            house.Display();
-            Console.ReadLine();
+            //HouseDirector houseDirector = new();
+            //IHouseBuilder luxuryBuilder = new LuxutyHouseBuilder();
+            //List<string> lstAmenities = ["Swimming Pool", "Home Thetre", "Garden"];
+
+            //// Construct luxury house
+            //houseDirector.Construct(luxuryBuilder, 3, true, lstAmenities);
+            //House house = luxuryBuilder.GetHouse();
+            //house.Display();
         }
     }
 
@@ -23,10 +24,10 @@
     {
         public int Bedroom { get; set; }
         public bool HasGarrage { get; set; }
-        public List<string> Amenitis { get; set; }
+        public List<string> Amenitis { get; set; } = null;
         public void Display()
         {
-            Console.WriteLine($"House Details Bedroom : {Bedroom} and Garrage { (HasGarrage ? "Yes":"No") }");
+            Console.WriteLine($"House Details Bedroom : {Bedroom} and Garrage {(HasGarrage ? "Yes" : "No")}");
         }
     }
 
@@ -35,7 +36,7 @@
     /// </summary>
     public class HouseDirector
     {
-        public void Construct(IHouseBuilder builder, int noOfBedroom, bool hasGarrage, List<string> amenities)
+        public static void Construct(IHouseBuilder builder, int noOfBedroom, bool hasGarrage, List<string> amenities)
         {
             builder.BuildBedroom(noOfBedroom);
             builder.BuildGarage(hasGarrage);
